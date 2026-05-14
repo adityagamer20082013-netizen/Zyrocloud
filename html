@@ -1,1 +1,812 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zyro Cloud</title>
 
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
+body{
+background:#050816;
+color:white;
+overflow-x:hidden;
+}
+
+/* BACKGROUND */
+
+body::before{
+content:'';
+position:fixed;
+width:100%;
+height:100%;
+background:
+linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
+linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
+background-size:40px 40px;
+z-index:-2;
+}
+
+body::after{
+content:'';
+position:fixed;
+width:100%;
+height:100%;
+background:
+radial-gradient(circle at 20% 20%, rgba(128,0,255,.3), transparent 30%),
+radial-gradient(circle at 80% 30%, rgba(0,255,255,.2), transparent 30%),
+radial-gradient(circle at 50% 80%, rgba(255,0,200,.2), transparent 30%);
+z-index:-1;
+}
+
+/* NAVBAR */
+
+nav{
+width:100%;
+padding:18px 8%;
+display:flex;
+justify-content:space-between;
+align-items:center;
+backdrop-filter:blur(15px);
+background:rgba(0,0,0,.4);
+border-bottom:1px solid rgba(255,255,255,.1);
+position:sticky;
+top:0;
+z-index:999;
+}
+
+.logo{
+display:flex;
+align-items:center;
+gap:12px;
+font-size:30px;
+font-weight:700;
+color:#49b7ff;
+}
+
+.logo img{
+width:55px;
+height:55px;
+border-radius:10px;
+}
+
+nav ul{
+display:flex;
+gap:35px;
+list-style:none;
+}
+
+nav ul li a{
+text-decoration:none;
+color:white;
+font-weight:500;
+transition:.3s;
+}
+
+nav ul li a:hover{
+color:#49b7ff;
+}
+
+.discord-btn{
+padding:14px 30px;
+border-radius:16px;
+background:linear-gradient(90deg,#6c4dff,#17c5ff);
+color:white;
+text-decoration:none;
+font-weight:600;
+box-shadow:0 0 20px rgba(0,255,255,.4);
+}
+
+/* HERO */
+
+.hero{
+min-height:100vh;
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:80px 8%;
+gap:50px;
+flex-wrap:wrap;
+}
+
+.hero-left{
+flex:1;
+}
+
+.hero-left h1{
+font-size:75px;
+font-weight:800;
+line-height:1.1;
+}
+
+.hero-left h1 span{
+background:linear-gradient(90deg,#8f5bff,#15d3ff);
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+}
+
+.hero-left p{
+margin-top:30px;
+font-size:20px;
+color:#cfcfcf;
+line-height:1.7;
+max-width:700px;
+}
+
+.hero-buttons{
+margin-top:40px;
+display:flex;
+gap:20px;
+flex-wrap:wrap;
+}
+
+.hero-buttons a{
+padding:16px 35px;
+border-radius:18px;
+text-decoration:none;
+font-weight:600;
+font-size:18px;
+transition:.3s;
+}
+
+.start-btn{
+background:linear-gradient(90deg,#7d4dff,#1cc8ff);
+color:white;
+box-shadow:0 0 25px rgba(0,255,255,.4);
+}
+
+.start-btn:hover{
+transform:translateY(-4px);
+}
+
+.join-btn{
+border:1px solid rgba(255,255,255,.2);
+color:white;
+background:rgba(255,255,255,.05);
+}
+
+/* RIGHT PANEL */
+
+.hero-right{
+flex:1;
+display:flex;
+justify-content:center;
+}
+
+.panel{
+width:100%;
+max-width:620px;
+background:rgba(15,20,35,.8);
+border:1px solid rgba(255,255,255,.08);
+border-radius:35px;
+padding:35px;
+backdrop-filter:blur(18px);
+box-shadow:0 0 40px rgba(0,255,255,.1);
+}
+
+.panel-lines{
+margin-bottom:25px;
+}
+
+.line{
+height:16px;
+border-radius:20px;
+margin-bottom:18px;
+background:linear-gradient(90deg,#7e56ff,#00cfff);
+}
+
+.line:nth-child(1){width:100%;}
+.line:nth-child(2){width:85%;}
+.line:nth-child(3){width:65%;}
+
+.cards{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:22px;
+}
+
+.card{
+background:rgba(255,255,255,.04);
+padding:28px;
+border-radius:25px;
+border:1px solid rgba(255,255,255,.06);
+transition:.4s;
+}
+
+.card:hover{
+transform:translateY(-10px);
+border-color:#29d0ff;
+}
+
+.card h3{
+font-size:26px;
+margin-bottom:14px;
+}
+
+.card p{
+color:#cfcfcf;
+line-height:1.6;
+}
+
+/* OWNERS */
+
+.section{
+padding:100px 8%;
+}
+
+.section-title{
+text-align:center;
+font-size:65px;
+font-weight:800;
+margin-bottom:25px;
+}
+
+.section-sub{
+text-align:center;
+font-size:20px;
+color:#cfcfcf;
+margin-bottom:70px;
+}
+
+.owner-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+gap:30px;
+}
+
+.owner-card{
+background:rgba(255,255,255,.04);
+padding:35px;
+border-radius:28px;
+text-align:center;
+border:1px solid rgba(255,255,255,.08);
+transition:.4s;
+}
+
+.owner-card:hover{
+transform:translateY(-10px);
+box-shadow:0 0 30px rgba(0,255,255,.15);
+}
+
+.owner-card img{
+width:120px;
+height:120px;
+border-radius:50%;
+object-fit:cover;
+border:4px solid #16c9ff;
+margin-bottom:20px;
+}
+
+.owner-card h2{
+font-size:34px;
+margin-bottom:10px;
+}
+
+.owner-card span{
+color:#28d0ff;
+font-weight:600;
+display:block;
+margin-bottom:20px;
+}
+
+.owner-card p{
+color:#cfcfcf;
+line-height:1.7;
+}
+
+/* FEATURES */
+
+.features{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+gap:30px;
+}
+
+.feature{
+background:rgba(255,255,255,.04);
+padding:35px;
+border-radius:28px;
+border:1px solid rgba(255,255,255,.08);
+transition:.4s;
+}
+
+.feature:hover{
+transform:translateY(-8px);
+border-color:#29d0ff;
+}
+
+.feature h3{
+font-size:32px;
+margin-bottom:15px;
+}
+
+.feature p{
+color:#cfcfcf;
+line-height:1.8;
+font-size:18px;
+}
+
+/* FAQ */
+
+.faq{
+max-width:1100px;
+margin:auto;
+}
+
+.faq-item{
+background:rgba(255,255,255,.04);
+padding:30px;
+border-radius:24px;
+margin-bottom:25px;
+border:1px solid rgba(255,255,255,.08);
+cursor:pointer;
+}
+
+.faq-question{
+font-size:26px;
+font-weight:600;
+display:flex;
+justify-content:space-between;
+align-items:center;
+}
+
+.faq-answer{
+margin-top:20px;
+display:none;
+color:#cfcfcf;
+line-height:1.8;
+font-size:18px;
+}
+
+.faq-item.active .faq-answer{
+display:block;
+}
+
+/* REVIEWS */
+
+.review-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+gap:30px;
+}
+
+.review{
+background:rgba(255,255,255,.04);
+padding:35px;
+border-radius:25px;
+border:1px solid rgba(255,255,255,.08);
+}
+
+.review-top{
+display:flex;
+align-items:center;
+gap:18px;
+margin-bottom:25px;
+}
+
+.review-top img{
+width:70px;
+height:70px;
+border-radius:50%;
+object-fit:cover;
+border:3px solid #16d0ff;
+}
+
+.review h4{
+font-size:26px;
+}
+
+.review span{
+color:#cfcfcf;
+font-size:15px;
+}
+
+.stars{
+color:gold;
+margin-bottom:20px;
+font-size:25px;
+}
+
+.review p{
+color:#d4d4d4;
+line-height:1.8;
+font-size:18px;
+}
+
+/* FOOTER */
+
+footer{
+padding:50px 8%;
+text-align:center;
+border-top:1px solid rgba(255,255,255,.1);
+margin-top:80px;
+color:#bdbdbd;
+font-size:18px;
+}
+
+/* MOBILE */
+
+@media(max-width:900px){
+
+.hero-left h1{
+font-size:55px;
+}
+
+.section-title{
+font-size:48px;
+}
+
+nav ul{
+display:none;
+}
+
+}
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+
+<nav>
+
+<div class="logo">
+<img src="https://i.imgur.com/7M34hi2.png">
+Zyro Cloud
+</div>
+
+<ul>
+<li><a href="#">Home</a></li>
+<li><a href="#">Services</a></li>
+<li><a href="#">Locations</a></li>
+<li><a href="#">Features</a></li>
+<li><a href="#">FAQ</a></li>
+</ul>
+
+<a href="#" class="discord-btn">Join Discord</a>
+
+</nav>
+
+<!-- HERO -->
+
+<section class="hero">
+
+<div class="hero-left">
+
+<h1>
+Power Your<br>
+Servers With <span>Zyro Cloud</span>
+</h1>
+
+<p>
+Premium hosting for Minecraft servers, VPS, VDS, Bot hosting,
+and Domains. Built for speed, uptime, modern design,
+and a clean professional experience.
+</p>
+
+<div class="hero-buttons">
+<a href="#" class="start-btn">Get Started</a>
+<a href="#" class="join-btn">Join Discord</a>
+</div>
+
+</div>
+
+<div class="hero-right">
+
+<div class="panel">
+
+<div class="panel-lines">
+<div class="line"></div>
+<div class="line"></div>
+<div class="line"></div>
+</div>
+
+<div class="cards">
+
+<div class="card">
+<h3>Minecraft Hosting</h3>
+<p>
+Low latency nodes with smooth performance for survival,
+modpacks, and minigames.
+</p>
+</div>
+
+<div class="card">
+<h3>Bot Hosting</h3>
+<p>
+Reliable hosting for Discord bots, automation tools,
+and custom apps.
+</p>
+</div>
+
+<div class="card">
+<h3>Cloud VPS</h3>
+<p>
+Root access, scalable resources, and stable performance
+for all workloads.
+</p>
+</div>
+
+<div class="card">
+<h3>Domain Services</h3>
+<p>
+Launch your brand with premium domains and easy management.
+</p>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- OWNERS -->
+
+<section class="section">
+
+<h1 class="section-title">Meet The Owners</h1>
+<p class="section-sub">
+The people behind Zyro Cloud 🚀
+</p>
+
+<div class="owner-grid">
+
+<div class="owner-card">
+<img src="https://i.imgur.com/Nn4R8lP.jpeg">
+<h2>Kartik Prajapat</h2>
+<span>Founder</span>
+<p>
+Leading Zyro Cloud with vision and innovation.
+</p>
+</div>
+
+<div class="owner-card">
+<img src="https://i.imgur.com/9f9H7Xh.jpeg">
+<h2>Shubham</h2>
+<span>Founder</span>
+<p>
+Handling management and operations smoothly.
+</p>
+</div>
+
+<div class="owner-card">
+<img src="https://i.imgur.com/2F7qM2L.jpeg">
+<h2>Dhruv</h2>
+<span>Co-Founder</span>
+<p>
+Providing support and backend development.
+</p>
+</div>
+
+<div class="owner-card">
+<img src="https://i.imgur.com/T1g8B8x.jpeg">
+<h2>Dev Rai</h2>
+<span>Developer</span>
+<p>
+Helping Zyro Cloud grow with strong teamwork.
+</p>
+</div>
+
+</div>
+
+</section>
+
+<!-- FEATURES -->
+
+<section class="section">
+
+<h1 class="section-title">Why Choose Zyro Cloud?</h1>
+
+<p class="section-sub">
+Fast infrastructure, clean experience, strong support,
+and premium visuals designed to make your hosting feel next level.
+</p>
+
+<div class="features">
+
+<div class="feature">
+<h3>⚡ High Performance</h3>
+<p>
+Fast CPUs, optimized nodes, and stable infrastructure
+for smoother hosting.
+</p>
+</div>
+
+<div class="feature">
+<h3>🔒 Secure Environment</h3>
+<p>
+Reliable protection and stable platform architecture.
+</p>
+</div>
+
+<div class="feature">
+<h3>🛠 Easy Control</h3>
+<p>
+Simple management flow for deploying and controlling servers.
+</p>
+</div>
+
+<div class="feature">
+<h3>🌍 Global Locations</h3>
+<p>
+Choose locations near your users for reduced ping.
+</p>
+</div>
+
+<div class="feature">
+<h3>💬 Helpful Support</h3>
+<p>
+Responsive support team ready to help quickly.
+</p>
+</div>
+
+<div class="feature">
+<h3>📈 Easy Scaling</h3>
+<p>
+Upgrade resources anytime as your community grows.
+</p>
+</div>
+
+</div>
+
+</section>
+
+<!-- FAQ -->
+
+<section class="section">
+
+<h1 class="section-title">Frequently Asked Questions</h1>
+
+<p class="section-sub">
+Common questions users ask.
+</p>
+
+<div class="faq">
+
+<div class="faq-item active">
+<div class="faq-question">
+What services does Zyro Cloud provide?
+<span>✖</span>
+</div>
+<div class="faq-answer">
+Minecraft hosting, VPS hosting, bot hosting,
+VDS solutions, and domain services.
+</div>
+</div>
+
+<div class="faq-item">
+<div class="faq-question">
+How fast is the setup process?
+<span>+</span>
+</div>
+<div class="faq-answer">
+Most services are deployed instantly after purchase.
+</div>
+</div>
+
+<div class="faq-item">
+<div class="faq-question">
+Do you offer support for Discord bots?
+<span>+</span>
+</div>
+<div class="faq-answer">
+Yes, we provide optimized hosting for Discord bots.
+</div>
+</div>
+
+<div class="faq-item">
+<div class="faq-question">
+How can I order a plan?
+<span>+</span>
+</div>
+<div class="faq-answer">
+Join our Discord or contact support to order.
+</div>
+</div>
+
+</div>
+
+</section>
+
+<!-- REVIEWS -->
+
+<section class="section">
+
+<h1 class="section-title">What Our Clients Say</h1>
+
+<p class="section-sub">
+Trusted by gamers, creators, and communities.
+</p>
+
+<div class="review-grid">
+
+<div class="review">
+
+<div class="review-top">
+<img src="https://i.imgur.com/0y0y0y0.jpeg">
+<div>
+<h4>Rohit Sharma</h4>
+<span>Minecraft Server User</span>
+</div>
+</div>
+
+<div class="stars">★★★★★</div>
+
+<p>
+Best hosting experience so far.
+Server performance is smooth and setup was easy.
+</p>
+
+</div>
+
+<div class="review">
+
+<div class="review-top">
+<img src="https://i.imgur.com/7x7x7x7.jpeg">
+<div>
+<h4>Ayaan Khan</h4>
+<span>Discord Bot Hosting</span>
+</div>
+</div>
+
+<div class="stars">★★★★★</div>
+
+<p>
+My bot runs 24/7 without issues.
+The panel is easy to use and fast.
+</p>
+
+</div>
+
+<div class="review">
+
+<div class="review-top">
+<img src="https://i.imgur.com/6x6x6x6.jpeg">
+<div>
+<h4>Priyansh Verma</h4>
+<span>VPS Customer</span>
+</div>
+</div>
+
+<div class="stars">★★★★★</div>
+
+<p>
+Very good uptime and premium feel.
+Pricing is fair and support is fast.
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+<footer>
+© 2026 Zyro Cloud. All Rights Reserved.
+</footer>
+
+<script>
+
+document.querySelectorAll('.faq-item').forEach(item=>{
+
+item.addEventListener('click',()=>{
+
+item.classList.toggle('active');
+
+});
+
+});
+
+</script>
+
+</body>
+  </html>
